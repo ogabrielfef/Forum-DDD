@@ -1,12 +1,9 @@
-import { expect, test } from 'vitest'
 import { AnswerQuestionUseCase } from './answer-question'
 import { AnswersRepository } from '../repositories/answers-repository'
-import { Answer } from '../entities/answer';
+import { Answer } from '../../enterprise/entities/answer'
 
 const fakeAnswersRepository: AnswersRepository = {
-  create: async (answer: Answer) => {
-    return;
-  }
+  create: async (answer: Answer) => {},
 }
 
 test('create an answer', async () => {
@@ -15,7 +12,7 @@ test('create an answer', async () => {
   const answer = await answerQuestion.execute({
     questionId: '1',
     instructorId: '1',
-    content: 'New answer.'
+    content: 'New answer.',
   })
 
   expect(answer.content).toEqual('New answer.')
